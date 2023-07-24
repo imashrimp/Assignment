@@ -1,24 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="landscape" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LEDBoard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPq-Ut-rs7">
+                                <rect key="frame" x="79" y="41" width="694" height="311"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9ay-b9-N90" appends="YES" id="GKU-fk-1gm"/>
+                                </connections>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ve-fz-Mn9">
+                                <rect key="frame" x="79" y="20" width="694" height="80"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZB8-cT-bhb">
+                                        <rect key="frame" x="16" y="23" width="542" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="tapReturnToDismissKeyboard:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="MiD-QR-5qn"/>
+                                        </connections>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="u5L-0t-Vnc">
+                                        <rect key="frame" x="574" y="25" width="104" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5E-ZI-W6r">
+                                                <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="showTextOnLabel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wHb-63-ufZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bi6-4w-rQy">
+                                                <rect key="frame" x="58" y="0.0" width="46" height="30"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="changeTextColorTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QdW-rY-vEb"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="u5L-0t-Vnc" firstAttribute="centerY" secondItem="0Ve-fz-Mn9" secondAttribute="centerY" id="71D-9w-S2F"/>
+                                    <constraint firstAttribute="height" constant="80" id="8De-NB-Qrm"/>
+                                    <constraint firstAttribute="trailing" secondItem="u5L-0t-Vnc" secondAttribute="trailing" constant="16" id="Dof-0L-fpk"/>
+                                    <constraint firstItem="ZB8-cT-bhb" firstAttribute="centerY" secondItem="0Ve-fz-Mn9" secondAttribute="centerY" id="YDu-oO-Qh0"/>
+                                    <constraint firstItem="u5L-0t-Vnc" firstAttribute="leading" secondItem="ZB8-cT-bhb" secondAttribute="trailing" constant="16" id="n45-Dh-UBD"/>
+                                    <constraint firstItem="ZB8-cT-bhb" firstAttribute="leading" secondItem="0Ve-fz-Mn9" secondAttribute="leading" constant="16" id="p2v-VT-eWY"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="0Ve-fz-Mn9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="1Bb-ng-njZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0Ve-fz-Mn9" secondAttribute="trailing" constant="20" id="25n-1w-Nxc"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bPq-Ut-rs7" secondAttribute="trailing" constant="20" id="Ac2-U4-ewr"/>
+                            <constraint firstItem="bPq-Ut-rs7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kn9-Oj-lJE"/>
+                            <constraint firstItem="bPq-Ut-rs7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ZNe-ct-T7n"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bPq-Ut-rs7" secondAttribute="bottom" constant="20" id="dyn-Dw-ehy"/>
+                            <constraint firstItem="bPq-Ut-rs7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="nvl-bu-Rzj"/>
+                            <constraint firstItem="0Ve-fz-Mn9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="xeH-NJ-lw0"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Er1-pO-1hP" appends="YES" id="kcR-vl-Qau"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="changeColorButton" destination="Bi6-4w-rQy" id="R25-im-ILh"/>
+                        <outlet property="mainBoardLabel" destination="bPq-Ut-rs7" id="qQJ-fw-9d4"/>
+                        <outlet property="sendButton" destination="d5E-ZI-W6r" id="bao-dU-pFX"/>
+                        <outlet property="topTextField" destination="ZB8-cT-bhb" id="Mne-Lh-j73"/>
+                        <outlet property="topView" destination="0Ve-fz-Mn9" id="yq8-Uu-CUE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="9ay-b9-N90">
+                    <connections>
+                        <action selector="tapScreenToDismissKeyboard:" destination="BYZ-38-t0r" id="fwy-A7-CI2"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="Er1-pO-1hP">
+                    <connections>
+                        <action selector="tapScreenToHideTopView:" destination="BYZ-38-t0r" id="Mfi-vC-p3l"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="116.90140845070422" y="3.8167938931297707"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
