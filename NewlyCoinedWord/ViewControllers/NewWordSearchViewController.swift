@@ -7,10 +7,8 @@
 
 import UIKit
 
-// .systemCyan이 iOS 15.0 이후 버전부터 가능해서 붙임
-//@available(iOS 15.0, *)
 class NewWordSearchViewController: UIViewController {
-
+    
     @IBOutlet var searchTextField: UITextField!
     @IBOutlet var searchButton: UIButton!
     @IBOutlet var firstRelatedWordButton: UIButton!
@@ -20,22 +18,23 @@ class NewWordSearchViewController: UIViewController {
     @IBOutlet var fifthRelatedWordButton: UIButton!
     @IBOutlet var explanationLabel: UILabel!
     
-    
-    var newWordArray: [String] = ["맑눈광", "하남자", "이왜진", "쩝쩝박사", "중꺾마"]
+    var newWordDictionary: [String : String] = ["맑눈광" : #""맑은 눈의 광인"을 뜻하는 말로 맑은 눈에서 광기가 느껴지는 사람을 가리킴."#,
+                                                "하남자" : "상남자의 반대 의미.",
+                                                "이왜진" : #""이거 왜 진짜임?"의 줄임말로 상식을 벗어난 내용이 사실일때 사용."#,
+                                                "쩝쩝박사" : "맛있는 음식 조합을 잘 아는 사람을 가리킬 때 쓰는 말.",
+                                                "중꺾마" : #"중요한건 꺾이지 않은 마음"의 줄임말로 무언가를 할 때 끈기를 갖고 한다면 위기의 상황도 역전할 수 있음을 의미."#]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureSearchTextField()
         configureSearchButton()
-        configureRelatedWordButton(wordButton: firstRelatedWordButton, backgroundColor: .systemBlue, newWord: newWordArray[0], textColor: .systemYellow)
-        configureRelatedWordButton(wordButton: secondRelatedWordButton, backgroundColor: .systemPink, newWord: newWordArray[1], textColor: .white)
-        if #available(iOS 15.0, *) {
-            configureRelatedWordButton(wordButton: thirdRelatedWordButton, backgroundColor: .cyan, newWord: newWordArray[2], textColor: .systemPink)
-        } else {
-            configureRelatedWordButton(wordButton: thirdRelatedWordButton, backgroundColor: .systemFill, newWord: newWordArray[2], textColor: .systemGreen)
-        }
-        configureRelatedWordButton(wordButton: fourthRelatedWordButton, backgroundColor: .systemOrange, newWord: newWordArray[3], textColor: .black)
-        configureRelatedWordButton(wordButton: fifthRelatedWordButton, backgroundColor: .brown, newWord: newWordArray[4], textColor: .blue)
+        configureWordButton(wordButton: firstRelatedWordButton, backgroundColor: .systemBlue, textColor: .systemYellow)
+        configureWordButton(wordButton: secondRelatedWordButton, backgroundColor: .systemPink, textColor: .white)
+        configureWordButton(wordButton: thirdRelatedWordButton, backgroundColor: .cyan, textColor: .systemPink)
+        configureWordButton(wordButton: fourthRelatedWordButton, backgroundColor: .systemOrange, textColor: .black)
+        configureWordButton(wordButton: fifthRelatedWordButton, backgroundColor: .brown, textColor: .blue)
+        setWordButtonAtFirst()
         configureExplantionLabel()
     }
     
@@ -43,23 +42,24 @@ class NewWordSearchViewController: UIViewController {
         view.endEditing(true)
     }
     
-
+    
     @IBAction func searchButtonTapped(_ sender: UIButton) {
-        switch searchTextField.text {
-        case "맑눈광":
-            explanationLabel.text = #""맑은 눈의 광인"을 뜻하는 말로 맑은 눈에서 광기가 느껴지는 사람을 가리킴."#
-        case "하남자":
-            explanationLabel.text = "상남자의 반대 의미."
-        case "이왜진":
-            explanationLabel.text = #""이거 왜 진짜임?"의 줄임말로 상식을 벗어난 내용이 사실일때 사용."#
-        case "쩝쩝박사":
-            explanationLabel.text = "맛있는 음식 조합을 잘 아는 사람을 가리킬 때 쓰는 말."
-        case "중꺾마":
-            explanationLabel.text = #"중요한건 꺾이지 않은 마음"의 줄임말로 무언가를 할 때 끈기를 갖고 한다면 위기의 상황도 역전할 수 있음을 의미."#
-        default:
-            explanationLabel.text = "검색어에 대한 설명을 찾을 수 없습니다."
+        
+        if let searchText = searchTextField.text {
+            if newWordDictionary.keys.contains(searchText) {
+                explanationLabel.text = newWordDictionary[searchText]
+            } else if  searchText.count <= 1 {
+                let alert = UIAlertController(title: "알림", message: "검색어가 너무 짧습니다.", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "다시 검색하기", style: .default)
+                alert.addAction(ok)
+                present(alert, animated: true)
+                explanationLabel.text = "신조어가 무슨 뜻인지 알려드림."
+                searchTextField.text = ""
+            } else if newWordDictionary.keys.contains(searchText) == false {
+                explanationLabel.text = "검색어에 대한 설명을 찾을 수 없습니다."
+            }
         }
-        mixNewWordOrder()
+        setWordButtonAtFirst()
     }
     
     
@@ -88,17 +88,6 @@ class NewWordSearchViewController: UIViewController {
         searchButton.layer.cornerRadius = 8
     }
     
-    func configureRelatedWordButton(wordButton: UIButton,
-                                    backgroundColor: UIColor,
-                                    newWord: String?,
-                                    textColor: UIColor) {
-        wordButton.layer.cornerRadius = 5
-        wordButton.titleLabel?.font = .systemFont(ofSize: 18)
-        wordButton.backgroundColor = backgroundColor
-        wordButton.setTitle(newWord, for: .normal)
-        wordButton.setTitleColor(textColor, for: .normal)
-    }
-    
     func configureExplantionLabel() {
         explanationLabel.textAlignment = .center
         explanationLabel.font = .systemFont(ofSize: 25)
@@ -110,14 +99,33 @@ class NewWordSearchViewController: UIViewController {
         explanationLabel.numberOfLines = 0
     }
     
-    func mixNewWordOrder() {
-        newWordArray.shuffle()
-        
-        let wordButtonArray: [UIButton] = [firstRelatedWordButton, secondRelatedWordButton, thirdRelatedWordButton, fourthRelatedWordButton, fifthRelatedWordButton]
-        
-        for i in 0..<wordButtonArray.count {
-            wordButtonArray[i].setTitle(newWordArray[i], for: .normal)
-        }
+    func configureWordButton(wordButton: UIButton,
+                             backgroundColor: UIColor,
+                             textColor: UIColor) {
+        wordButton.layer.cornerRadius = 5
+        wordButton.titleLabel?.font = .systemFont(ofSize: 18)
+        wordButton.backgroundColor = backgroundColor
+        wordButton.setTitleColor(textColor, for: .normal)
     }
     
+        func setWordButtonAtFirst() {
+            let wordButtonArray: [UIButton] = [firstRelatedWordButton, secondRelatedWordButton, thirdRelatedWordButton, fourthRelatedWordButton, fifthRelatedWordButton]
+    
+            var keyWordArray = Array(newWordDictionary.keys)
+            keyWordArray.shuffle()
+    
+            for wordButton in wordButtonArray {
+                wordButton.setTitle(keyWordArray[wordButton.tag], for: .normal)
+            }
+        }
+    
+//    func setWordButton() {
+//        let wordButtonArray: [UIButton] = [firstRelatedWordButton, secondRelatedWordButton, thirdRelatedWordButton, fourthRelatedWordButton, fifthRelatedWordButton]
+//
+//        var keywordSet = Set(newWordDictionary.keys)
+//
+//        for i in 0..<wordButtonArray.count {
+//            wordButtonArray[i].setTitle(keywordSet.removeFirst(), for: .normal)
+//        }
+//    }
 }
