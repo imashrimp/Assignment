@@ -41,13 +41,10 @@ class MoodCheckViewController: UIViewController {
     @IBAction func moodButtonTapped(_ sender: UIButton) {
         /// 열거형 사용하면 default 없어져서 더 깔끔할 듯.
         
-        var wtf = Mood.allCases
-        
         switch sender.tag {
         case 0:
             superHappyCount += 1
-            statVC.moodCountDictionary[wtf[sender.tag].rawValue]
-            print(statVC.moodCountDictionary[wtf[sender.tag].rawValue])
+
         case 1:
             happyCount += 1
         case 2:
