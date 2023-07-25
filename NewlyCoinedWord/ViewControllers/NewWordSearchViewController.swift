@@ -18,6 +18,7 @@ class NewWordSearchViewController: UIViewController {
     @IBOutlet var fifthRelatedWordButton: UIButton!
     @IBOutlet var explanationLabel: UILabel!
     
+    var newWordList = NewWord.allCases
     var newWordDictionary: [String : String] = ["맑눈광" : #""맑은 눈의 광인"을 뜻하는 말로 맑은 눈에서 광기가 느껴지는 사람을 가리킴."#,
                                                 "하남자" : "상남자의 반대 의미.",
                                                 "이왜진" : #""이거 왜 진짜임?"의 줄임말로 상식을 벗어난 내용이 사실일때 사용."#,
@@ -45,21 +46,29 @@ class NewWordSearchViewController: UIViewController {
     
     @IBAction func searchButtonTapped(_ sender: UIButton) {
         
-        if let searchText = searchTextField.text {
-            if newWordDictionary.keys.contains(searchText) {
-                explanationLabel.text = newWordDictionary[searchText]
-            } else if  searchText.count <= 1 {
-                let alert = UIAlertController(title: "알림", message: "검색어가 너무 짧습니다.", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "다시 검색하기", style: .default)
-                alert.addAction(ok)
-                present(alert, animated: true)
-                explanationLabel.text = "신조어가 무슨 뜻인지 알려드림."
-                searchTextField.text = ""
-            } else if newWordDictionary.keys.contains(searchText) == false {
-                explanationLabel.text = "검색어에 대한 설명을 찾을 수 없습니다."
+        guard let keyWord = searchTextField.text else { return }
+        //TODO: 예외처리해야함
+        for i in 0..<newWordList.count {
+            if keyWord == "\(newWordList[i])" {
+                explanationLabel.text = newWordList[i].rawValue
             }
         }
-        setWordButtonAtFirst()
+        
+//        if let searchText = searchTextField.text {
+//            if newWordDictionary.keys.contains(searchText) {
+//                explanationLabel.text = newWordDictionary[searchText]
+//            } else if  searchText.count <= 1 {
+//                let alert = UIAlertController(title: "알림", message: "검색어가 너무 짧습니다.", preferredStyle: .alert)
+//                let ok = UIAlertAction(title: "다시 검색하기", style: .default)
+//                alert.addAction(ok)
+//                present(alert, animated: true)
+//                explanationLabel.text = "신조어가 무슨 뜻인지 알려드림."
+//                searchTextField.text = ""
+//            } else if newWordDictionary.keys.contains(searchText) == false {
+//                explanationLabel.text = "검색어에 대한 설명을 찾을 수 없습니다."
+//            }
+//        }
+//        setWordButtonAtFirst()
     }
     
     
@@ -108,24 +117,14 @@ class NewWordSearchViewController: UIViewController {
         wordButton.setTitleColor(textColor, for: .normal)
     }
     
-        func setWordButtonAtFirst() {
-            let wordButtonArray: [UIButton] = [firstRelatedWordButton, secondRelatedWordButton, thirdRelatedWordButton, fourthRelatedWordButton, fifthRelatedWordButton]
-    
-            var keyWordArray = Array(newWordDictionary.keys)
-            keyWordArray.shuffle()
-    
-            for wordButton in wordButtonArray {
-                wordButton.setTitle(keyWordArray[wordButton.tag], for: .normal)
-            }
+    func setWordButtonAtFirst() {
+        let wordButtonArray: [UIButton] = [firstRelatedWordButton, secondRelatedWordButton, thirdRelatedWordButton, fourthRelatedWordButton, fifthRelatedWordButton]
+
+
+        newWordList.shuffle()
+        
+        for wordButton in wordButtonArray {
+            wordButton.setTitle("\(newWordList[wordButton.tag])", for: .normal)
         }
-    
-//    func setWordButton() {
-//        let wordButtonArray: [UIButton] = [firstRelatedWordButton, secondRelatedWordButton, thirdRelatedWordButton, fourthRelatedWordButton, fifthRelatedWordButton]
-//
-//        var keywordSet = Set(newWordDictionary.keys)
-//
-//        for i in 0..<wordButtonArray.count {
-//            wordButtonArray[i].setTitle(keywordSet.removeFirst(), for: .normal)
-//        }
-//    }
+    }
 }
