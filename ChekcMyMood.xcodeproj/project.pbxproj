@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		17867E6A2A6FBB83007B35B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17867E692A6FBB83007B35B2 /* AppDelegate.swift */; };
 		17867E6C2A6FBB83007B35B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17867E6B2A6FBB83007B35B2 /* SceneDelegate.swift */; };
-		17867E6E2A6FBB83007B35B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17867E6D2A6FBB83007B35B2 /* ViewController.swift */; };
+		17867E6E2A6FBB83007B35B2 /* MoodCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17867E6D2A6FBB83007B35B2 /* MoodCheckViewController.swift */; };
 		17867E712A6FBB83007B35B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17867E6F2A6FBB83007B35B2 /* Main.storyboard */; };
 		17867E732A6FBB84007B35B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17867E722A6FBB84007B35B2 /* Assets.xcassets */; };
 		17867E762A6FBB84007B35B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17867E742A6FBB84007B35B2 /* LaunchScreen.storyboard */; };
+		17867E7E2A6FBEF2007B35B2 /* ImageSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17867E7D2A6FBEF2007B35B2 /* ImageSingleton.swift */; };
+		17867E802A6FC533007B35B2 /* StatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17867E7F2A6FC533007B35B2 /* StatViewController.swift */; };
+		17867E842A6FF068007B35B2 /* MoodEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17867E832A6FF068007B35B2 /* MoodEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		17867E662A6FBB83007B35B2 /* ChekcMyMood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChekcMyMood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17867E692A6FBB83007B35B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17867E6B2A6FBB83007B35B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		17867E6D2A6FBB83007B35B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		17867E6D2A6FBB83007B35B2 /* MoodCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckViewController.swift; sourceTree = "<group>"; };
 		17867E702A6FBB83007B35B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		17867E722A6FBB84007B35B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17867E752A6FBB84007B35B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17867E772A6FBB84007B35B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17867E7D2A6FBEF2007B35B2 /* ImageSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSingleton.swift; sourceTree = "<group>"; };
+		17867E7F2A6FC533007B35B2 /* StatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatViewController.swift; sourceTree = "<group>"; };
+		17867E832A6FF068007B35B2 /* MoodEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +64,12 @@
 			children = (
 				17867E692A6FBB83007B35B2 /* AppDelegate.swift */,
 				17867E6B2A6FBB83007B35B2 /* SceneDelegate.swift */,
-				17867E6D2A6FBB83007B35B2 /* ViewController.swift */,
+				17867E6D2A6FBB83007B35B2 /* MoodCheckViewController.swift */,
+				17867E7F2A6FC533007B35B2 /* StatViewController.swift */,
 				17867E6F2A6FBB83007B35B2 /* Main.storyboard */,
 				17867E722A6FBB84007B35B2 /* Assets.xcassets */,
+				17867E7D2A6FBEF2007B35B2 /* ImageSingleton.swift */,
+				17867E832A6FF068007B35B2 /* MoodEnum.swift */,
 				17867E742A6FBB84007B35B2 /* LaunchScreen.storyboard */,
 				17867E772A6FBB84007B35B2 /* Info.plist */,
 			);
@@ -138,8 +147,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17867E6E2A6FBB83007B35B2 /* ViewController.swift in Sources */,
+				17867E842A6FF068007B35B2 /* MoodEnum.swift in Sources */,
+				17867E6E2A6FBB83007B35B2 /* MoodCheckViewController.swift in Sources */,
+				17867E7E2A6FBEF2007B35B2 /* ImageSingleton.swift in Sources */,
 				17867E6A2A6FBB83007B35B2 /* AppDelegate.swift in Sources */,
+				17867E802A6FC533007B35B2 /* StatViewController.swift in Sources */,
 				17867E6C2A6FBB83007B35B2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
