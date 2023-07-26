@@ -98,7 +98,7 @@ class DetailViewController: UIViewController {
         
         guard let text = sender.text, let value = TextFieldType(rawValue: sender.tag) else {
             print("오류가 발생했습니다.")
-            return // 함수 종료를 의미함.
+            return
         }
         
         switch value {
