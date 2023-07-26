@@ -68,7 +68,6 @@ class MovieViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    
     @IBAction func randomPlayButtonTapped(_ sender: UIButton) {
       showRandomMovie()
     }
