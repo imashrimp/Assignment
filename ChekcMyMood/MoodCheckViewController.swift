@@ -10,7 +10,7 @@ import UIKit
 class MoodCheckViewController: UIViewController {
     
     var imageName = ImageAsset.shared
-    let statVC = StatViewController()
+    let moodCountClass = MoodCount()
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var superHappyButton: UIButton!
@@ -35,29 +35,35 @@ class MoodCheckViewController: UIViewController {
         moodButtonConfigure(button: superSadButton, image: imageName.superSad, backgroundColor: .systemPurple,  tagNumber: 4)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print(moodCountClass.moodCountDictionary)
+    }
+    
     @IBAction func moodButtonTapped(_ sender: UIButton) {
         
         guard let moodValue = Mood(rawValue: sender.tag) else { return }
-  
+        
+        // moodCountVC.moodCountDictionary[moodValue.myMood] => 이게 옵셔널 타입이라 안 남어가는 듯?
         switch moodValue {
         case .superHappy:
             superHappyCount += 1
-            statVC.moodCountDictionary[moodValue.myMood] = superHappyCount
+            moodCountClass.moodCountDictionary[moodValue.myMood] = superHappyCount
         case .happy:
             happyCount += 1
-            statVC.moodCountDictionary[moodValue.myMood] = happyCount
+            moodCountClass.moodCountDictionary[moodValue.myMood] = happyCount
         case .soso:
             sosoCount += 1
-            statVC.moodCountDictionary[moodValue.myMood] = sosoCount
+            moodCountClass.moodCountDictionary[moodValue.myMood] = sosoCount
         case .sad:
             sadCount += 1
-            statVC.moodCountDictionary[moodValue.myMood] = sadCount
+            moodCountClass.moodCountDictionary[moodValue.myMood] = sadCount
         case .superSad:
             superSadCount += 1
-            statVC.moodCountDictionary[moodValue.myMood] = superSadCount
+            moodCountClass.moodCountDictionary[moodValue.myMood] = superSadCount
         }
         
-        print("SUPER HAPPY: \(superSadCount)번")
+        print("SUPER HAPPY: \(superHappyCount)번")
         print("HAPPY: \(happyCount)번")
         print("SOSO: \(sosoCount)번")
         print("SAD: \(sadCount)번")
