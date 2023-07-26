@@ -8,7 +8,7 @@
 import UIKit
 
 class MoodCheckViewController: UIViewController {
-
+    
     var imageName = ImageAsset.shared
     let statVC = StatViewController()
     
@@ -35,26 +35,26 @@ class MoodCheckViewController: UIViewController {
         moodButtonConfigure(button: superSadButton, image: imageName.superSad, backgroundColor: .systemPurple,  tagNumber: 4)
     }
     
-    
-    
-    /// 이 버튼이 눌릴 때 마다 StatVC의 딕셔너리에 값을 할당하면 됨. => 이걸 하려면 StatVC 인스턴스가 필요하고, StatVC에 있는 딕셔너리에 접근하기 위해 딕셔너리의 키와 똑같은 값을 가지는 enum case를 사용해야함.(dictionary[enumCaseName] = 내 감정Count)
     @IBAction func moodButtonTapped(_ sender: UIButton) {
-        /// 열거형 사용하면 default 없어져서 더 깔끔할 듯.
         
-        switch sender.tag {
-        case 0:
+        guard let moodValue = Mood(rawValue: sender.tag) else { return }
+  
+        switch moodValue {
+        case .superHappy:
             superHappyCount += 1
-
-        case 1:
+            statVC.moodCountDictionary[moodValue.myMood] = superHappyCount
+        case .happy:
             happyCount += 1
-        case 2:
+            statVC.moodCountDictionary[moodValue.myMood] = happyCount
+        case .soso:
             sosoCount += 1
-        case 3:
+            statVC.moodCountDictionary[moodValue.myMood] = sosoCount
+        case .sad:
             sadCount += 1
-        case 4:
+            statVC.moodCountDictionary[moodValue.myMood] = sadCount
+        case .superSad:
             superSadCount += 1
-        default:
-            print("내 기분이 어떤지 모르겠음.")
+            statVC.moodCountDictionary[moodValue.myMood] = superSadCount
         }
         
         print("SUPER HAPPY: \(superSadCount)번")
@@ -63,7 +63,7 @@ class MoodCheckViewController: UIViewController {
         print("SAD: \(sadCount)번")
         print("SUPER SAD: \(superSadCount)번")
     }
-
+    
     private func titleLabelConfigure() {
         titleLabel.textAlignment = .center
         titleLabel.text = "CHECK MY MOOD"

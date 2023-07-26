@@ -19,10 +19,8 @@ class StatViewController: UIViewController {
     var backgroundColor: [UIColor] = [.systemPink, .systemOrange, .systemYellow, .systemBlue, .systemPurple]
     /// 배열의 아이템 값을 열거형의 String 타입 원시값으로 설정하고 이걸 identifier처럼 사용해도 될듯?
     var moodLabelTitle: [String] = ["Super Happy", "Happy", "So So","Sad", "Super Sad"]
-    
     /// 이걸로  MoodCheckVC에서 화면전환 할 때 데이터 넘길 때 여기에 값 넣어서 label에 값 넣으면 될 듯...?
-    var moodCountDictionary: [String: Int] = ["superHappy": 0, "happy": 0, "soso": 0, "sad": 0, "superSad": 0]
-    
+    var moodCountDictionary: [String: Int] = ["Super Happy": 0, "Happy": 0, "So So": 0, "Sad": 0, "Super Sad": 0]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,4 +76,8 @@ class StatViewController: UIViewController {
 //            }
 //        }
 //    }
+    
+    func showCounts() {
+        
+    }
 }

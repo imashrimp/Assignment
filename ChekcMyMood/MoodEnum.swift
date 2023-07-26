@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum Mood: String, CaseIterable {
-    case superHappy = "Super Happy"
-    case happy = "Happy"
-    case soso = "So So"
-    case sad = "Sad"
-    case superSad = "Super Sad"
+enum Mood: Int, CaseIterable {
+    case superHappy = 0
+    case happy = 1
+    case soso = 2
+    case sad = 3
+    case superSad = 4
     
-    var myMool: String {
+    var myMood: String {
         switch self {
         case.superHappy:
             return "Super Happy"
