@@ -44,23 +44,22 @@ class MoodCheckViewController: UIViewController {
         
         guard let moodValue = Mood(rawValue: sender.tag) else { return }
         
-        // moodCountVC.moodCountDictionary[moodValue.myMood] => 이게 옵셔널 타입이라 안 남어가는 듯?
         switch moodValue {
         case .superHappy:
             superHappyCount += 1
-            moodCountClass.moodCountDictionary[moodValue.myMood] = superHappyCount
+            UserDefaults.standard.set(superHappyCount, forKey: moodValue.myMood)
         case .happy:
             happyCount += 1
-            moodCountClass.moodCountDictionary[moodValue.myMood] = happyCount
+            UserDefaults.standard.set(happyCount, forKey: moodValue.myMood)
         case .soso:
             sosoCount += 1
-            moodCountClass.moodCountDictionary[moodValue.myMood] = sosoCount
+            UserDefaults.standard.set(sosoCount, forKey: moodValue.myMood)
         case .sad:
             sadCount += 1
-            moodCountClass.moodCountDictionary[moodValue.myMood] = sadCount
+            UserDefaults.standard.set(sadCount, forKey: moodValue.myMood)
         case .superSad:
             superSadCount += 1
-            moodCountClass.moodCountDictionary[moodValue.myMood] = superSadCount
+            UserDefaults.standard.set(superSadCount, forKey: moodValue.myMood)
         }
         
         print("SUPER HAPPY: \(superHappyCount)번")
